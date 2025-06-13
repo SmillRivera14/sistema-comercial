@@ -81,7 +81,7 @@ public partial class SistemaComercialContext : DbContext
 
             entity.HasOne(d => d.CreadoPorNavigation).WithMany(p => p.UsuarioCreadoPorNavigation)
                 .HasForeignKey(d => d.RolId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK__Usuarios__RolID__4222D4EF");
         });
 
