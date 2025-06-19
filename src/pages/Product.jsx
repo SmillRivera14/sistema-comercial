@@ -1,15 +1,17 @@
 import { useContext, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { ProductContext } from "../context/ProductContext";
-import ProductImage from "../components/ProductImage";
+import CardImage from "../UI/Products/CardImage";
+import { ProductSkeleton } from "../UI/skeletons";
+import BackButton from "../UI/BackButton";
+import { useFilterProduct } from "../hookes/useFitlerProduct";
+import ErrorMessage from "../UI/ErrorMessage";
 
 export default function Product() {
   const { id } = useParams();
-  const { products, loading } = useContext(ProductContext);
+  const { products, loading, error } = useContext(ProductContext);
   const [selected, setSelectedProduct] = useState(null);
-  const navigate = useNavigate();
-  const handleBack = () => navigate(-1);
-
+  useFilterProduct(6);
   useEffect(() => {
     // esto hace que sea necesario tener un producto previamente cargado, para solucionar eso debería llamar a la API
     const foundProduct = products.find((element) => element.id == id);
@@ -19,7 +21,15 @@ export default function Product() {
   if (loading) {
     return (
       <div className="flex justify-center items-center h-screen">
-        <div className="animate-pulse text-gray-400">Cargando producto...</div>
+        <ProductSkeleton />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <ErrorMessage message={error} />
       </div>
     );
   }
@@ -33,11 +43,11 @@ export default function Product() {
   }
 
   return (
-    <div className="flex justify-center items-center min-h-screen min-w-dvw p-4">
+    <div className="flex justify-center items-center h-screen w-dvw p-4">
       <div className="max-w-md w-full bg-gray-800 rounded-xl shadow-lg overflow-hidden border border-gray-700">
         {/* Imagen del producto */}
         <div className="bg-gray-700 h-64 flex items-center justify-center">
-          <ProductImage src={selected.url} alt={products.nombre} />
+          <CardImage src={selected.url} alt={products.nombre} />
         </div>
 
         {/* Contenido de la card */}
@@ -68,12 +78,7 @@ export default function Product() {
 
           {/* Botones */}
           <div className="flex justify-between pt-4 border-t border-gray-700">
-            <button
-              onClick={handleBack}
-              className="px-6 py-2 border border-gray-600 rounded-lg text-gray-200 hover:bg-gray-700 transition-colors"
-            >
-              Volver
-            </button>
+            <BackButton />
             <button
               disabled={selected.stock <= 0}
               className={`px-6 py-2 rounded-lg text-white transition-colors ${

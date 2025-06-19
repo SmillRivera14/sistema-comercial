@@ -11,16 +11,19 @@ export function ProductProvider({ children }) {
   const [totalPaginas, setTotalPaginas] = useState(1);
   const [paginaActual, setPaginaActual] = useState(1);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchDatos = async () => {
       try {
         setLoading(true);
+        setError(null);
         const data = await Get(paginaActual);
         setProductos(data.result);
         setTotalPaginas(data.pages);
       } catch (error) {
         console.error("Error fetching data:", error);
+        setError(error.message);
       } finally {
         setLoading(false);
       }
@@ -32,12 +35,12 @@ export function ProductProvider({ children }) {
   return (
     <ProductContext.Provider
       value={{
-        // valores a compartir
         products,
         totalPaginas,
         paginaActual,
         setPaginaActual,
         loading,
+        error,
       }}
     >
       {children}

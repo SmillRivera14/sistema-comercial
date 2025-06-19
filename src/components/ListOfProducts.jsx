@@ -1,26 +1,22 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { ProductContext } from "../context/ProductContext";
-import ProductImage from "./ProductImage";
+import CardImage from "../UI/Products/CardImage";
+import { ListOfProductSkeleton } from "../UI/skeletons";
+import ErrorMessage from "../UI/ErrorMessage";
 
-export default function Products() {
-  const { products, loading } = useContext(ProductContext);
+export default function ListOfProducts() {
+  const { products, loading, error } = useContext(ProductContext);
 
   if (loading) {
+    return <ListOfProductSkeleton />;
+  }
+
+  if (error) return <ErrorMessage message={error} />;
+
+  if (!loading && products.length === 0) {
     return (
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">
-        {[...Array(8)].map((_, i) => (
-          <div
-            key={i}
-            className="bg-gray-800 rounded-xl p-4 space-y-3 border border-gray-700"
-          >
-            <div className="h-6 bg-gray-700 rounded animate-pulse"></div>
-            <div className="h-4 bg-gray-700 rounded animate-pulse"></div>
-            <div className="h-4 bg-gray-700 rounded animate-pulse w-3/4"></div>
-            <div className="h-3 bg-gray-700 rounded animate-pulse w-1/2"></div>
-          </div>
-        ))}
-      </div>
+      <p className="text-center text-gray-400">No se encontraron productos.</p>
     );
   }
 
@@ -34,7 +30,7 @@ export default function Products() {
           >
             {/* Placeholder para imagen del producto */}
             <div className="bg-gray-700 rounded-lg mb-4 h-40 flex items-center justify-center group-hover:bg-gray-600 transition-colors">
-              <ProductImage src={product.url} alt={product.nombre} />
+              <CardImage src={product.url} alt={product.nombre} />
             </div>
 
             <h2 className="text-lg font-semibold text-white mb-2 line-clamp-2">

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function ProductImage({ src, alt }) {
+export default function CardImage({ src = null, alt = null }) {
   const [hasError, setHasError] = useState(false);
 
   if (!src || hasError) {
