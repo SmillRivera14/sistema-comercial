@@ -19,7 +19,6 @@ public partial class Usuario
     [Required(ErrorMessage = "Debe introducir un roll")]
     [JsonIgnore]
     public int RolId { get; set; } = 2;
-
     public DateTime FechaRegistro { get; set; }
 
     [JsonIgnore]

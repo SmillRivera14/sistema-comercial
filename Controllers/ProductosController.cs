@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -59,7 +60,7 @@ namespace Sistema_comercial.Controllers
             return result.Count == 0 ? NotFound() : Ok(result);
         }
 
-
+        [Authorize(Roles = "admin")]
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] Producto producto)
         {
@@ -80,7 +81,7 @@ namespace Sistema_comercial.Controllers
                 throw new Exception(ex.Message);
             }
         }
-
+        [Authorize(Roles = "admin")]
         [HttpPut]
         public async Task<IActionResult> Update([FromBody] Producto producto, int id)
         {
@@ -106,6 +107,7 @@ namespace Sistema_comercial.Controllers
             return NoContent();
         }
 
+        [Authorize(Roles = "admin")]
         [HttpDelete]
         public async Task<IActionResult> Delete (int id)
         {
