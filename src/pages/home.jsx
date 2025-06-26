@@ -9,7 +9,7 @@ export default function Home() {
     useContext(ProductContext);
 
   return (
-    <div className="h-screen flex flex-col">
+    <div>
       {/* Header moderno */}
       <header className="bg-gray-800 border-b border-gray-700 px-6 py-4 shadow-lg">
         <div className="flex justify-between items-center ">
