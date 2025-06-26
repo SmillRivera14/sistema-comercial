@@ -49,3 +49,14 @@ Proyecto frontend desarrollado con React, Vite y Tailwind CSS para construir una
 ## Notas
 Este es un desarrollo en prograso.
 
+## Capturas de Pantalla
+
+Pantalla principal del sistema:
+
+<img src="./public/home.png" alt="Home" height="200" />
+
+Vista de la tarjeta principal:
+
+<img src="./public/card.png" alt="Card" width="300" />
+
+
