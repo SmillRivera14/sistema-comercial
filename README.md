@@ -1,12 +1,51 @@
-# React + Vite
+# Desarrollo en proceso🚀
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Proyecto frontend desarrollado con React, Vite y Tailwind CSS para construir una aplicación moderna, rápida y escalable orientada al manejo de productos y usaurios.
 
-Currently, two official plugins are available:
+## Tecnologías utilizadas
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [React 19](https://reactjs.org/)
+- [Vite](https://vitejs.dev/) como bundler y servidor de desarrollo
+- [Tailwind CSS 4](https://tailwindcss.com/) para estilos utilitarios
+- React Router DOM para manejo de rutas
+- ESLint para asegurar calidad y estilo en el código
 
-## Expanding the ESLint configuration
+## Scripts disponibles
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- `npm run dev`  
+  Ejecuta el servidor de desarrollo con recarga en caliente.
+
+- `npm run build`  
+  Genera la versión optimizada para producción.
+
+- `npm run preview`  
+  Vista previa local de la build de producción.
+
+- `npm run lint`  
+  Ejecuta ESLint para revisar errores y advertencias de código.
+
+## Instalación
+
+1. Clonar el repositorio
+
+   ```bash
+   git clone https://github.com/SmillRivera14/sistema-comercial.git
+   ```
+
+2. Instalar dependencias
+
+   ```bash
+   npm install
+   ```
+
+3. Ejecutar en modo desarrollo
+
+   ```bash
+   npm run dev
+   ```
+
+4. Abrir el navegador en [http://localhost:5173](http://localhost:5173) (por defecto)
+
+## Notas
+Este es un desarrollo en prograso.
+
